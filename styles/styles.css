@@ -7,3 +7,14 @@
     background-color: beige;
     box-shadow: 1px 1px 1px 1px gray;    
 }
+
+.layout{
+    display: grid;
+    justify-content: center;
+    grid-template-columns: auto auto auto;
+    justify-content: center;
+}
+
+img{
+    width: 50%
+}
