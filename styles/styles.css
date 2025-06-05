@@ -2,3 +2,8 @@
     color: black;
     text-align: center;
 }
+
+.card{
+    background-color: beige;
+    box-shadow: 1px 1px 1px 1px gray;    
+}
