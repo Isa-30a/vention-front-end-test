@@ -47,8 +47,10 @@ function createFlowerInfo(currentFlower) {
     const newInfo = document.createElement("div");
     newInfo.setAttribute("class", "info");
 
-    const name = document.createTextNode(currentFlower.name);
-    const price = document.createTextNode(currentFlower.price);
+    const name = document.createElement("p");
+    name.textContent = currentFlower.name;
+    const price = document.createElement("p");
+    price.textContent ="$ "+ currentFlower.price;
     const stars = document.createElement("div");
 
     newInfo.appendChild(name);
