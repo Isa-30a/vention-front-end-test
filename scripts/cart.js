@@ -21,19 +21,50 @@ const tempFlowers = [
 ]
 const layout = document.querySelector(".layout");
 
-addCards(cardListImg, layout);
+addCards(tempFlowers, layout);
 
-function addCards(cardListImg, container){
+function addCards(flowersList, container){
 
-    for (let index = 0; index < cardListImg.length; index++) {
-        const imgSrc = cardListImg[index];
-
+    for (let index = 0; index < flowersList.length; index++) {
+        const currentFlower = flowersList[index];
+        
         const newDiv = createCardElement();
+    
+        const img = addImgToanElement(currentFlower.img);
         
+        const newHr = document.createElement("hr");
+        
+        const newInfo = createFlowerInfo(currentFlower);
+
         container.appendChild(newDiv)
-        
-        const img = addImgToanElement(imgSrc);
         newDiv.appendChild(img);
+        newDiv.appendChild(newHr);
+        newDiv.appendChild(newInfo);
+    }
+}
+
+function createFlowerInfo(currentFlower) {
+    const newInfo = document.createElement("div");
+    newInfo.setAttribute("class", "info");
+
+    const name = document.createTextNode(currentFlower.name);
+    const price = document.createTextNode(currentFlower.price);
+    const stars = document.createElement("div");
+
+    newInfo.appendChild(name);
+    newInfo.appendChild(price);
+    newInfo.appendChild(stars);
+    createStars(currentFlower, stars);
+    return newInfo;
+}
+
+function createStars(flower, starsElement) {
+    for (let star = 1; star < flower.stars; star++) {
+        const element = flower;
+        const newStar = document.createElement("img");
+        newStar.setAttribute("src", "./assets/star.svg");
+        newStar.setAttribute("class", "star");
+        starsElement.appendChild(newStar);
     }
 }
 
