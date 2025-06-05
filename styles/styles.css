@@ -7,13 +7,22 @@
     display: grid;
     justify-content: center;
     grid-template-columns: auto auto auto;
-    gap: 40px;
+    gap: 1%;
     text-align: center;
 }
 .card{
     box-shadow: 1px 1px 1px 1px gray;   
 }
-.card:hover{
+.card > img:hover{
+    opacity: 50%;
+}
+
+.cart-button{
+    display: none;
+    color: white;
+    background-color: mediumseagreen;
+    border: none;
+    border-radius: 4px;
 }
 
 img{
