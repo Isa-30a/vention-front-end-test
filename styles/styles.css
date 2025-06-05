@@ -10,23 +10,30 @@
     gap: 1%;
     text-align: center;
 }
+
 .card{
     box-shadow: 1px 1px 1px 1px gray;   
 }
-.card > img:hover{
+.card > .img-container:hover{
     opacity: 50%;
+    position: relative;
 }
 
 .cart-button{
-    display: none;
-    color: white;
+    /* display: none; */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     background-color: mediumseagreen;
     border: none;
     border-radius: 4px;
+    
 }
 
 img{
-    width: 80%
+    width: 80%;
+    position:relative;
 }
 
 .info{
@@ -49,4 +56,41 @@ p{
     color: gray;
     stroke:gray;
     display: inline;
+}
+@media (max-width:480px) {
+    .layout{
+         display: grid;
+        justify-content: center;
+        grid-template-columns: auto ;
+        gap: 1%;
+        text-align: center;
+    }
+}
+
+@media (min-width:481px) and (max-width:768px){
+    .layout{
+         display: grid;
+        justify-content: center;
+        grid-template-columns: auto auto;
+        gap: 1%;
+        text-align: center;
+    }
+}
+@media (min-width:769px) and (max-width:1024px){
+   .layout{
+         display: grid;
+        justify-content: center;
+        grid-template-columns: auto auto auto ;
+        gap: 1%;
+        text-align: center;
+    }
+}
+@media (min-width:1025px) and (max-width:1200px){
+   .layout{
+         display: grid;
+        justify-content: center;
+        grid-template-columns: auto auto auto auto ;
+        gap: 1%;
+        text-align: center;
+    }
 }
