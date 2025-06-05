@@ -10,15 +10,17 @@ function addCards(cardListImg, container){
         const imgSrc = cardListImg[index];
         const newDiv = document.createElement("div");
         newDiv.setAttribute("class", "card");
+        container.appendChild(newDiv)
         
-        addImgToanElement(container,imgSrc)
+        const img = addImgToanElement(imgSrc);
         newDiv.appendChild(img);
     }
 }
 
-function addImgToanElement(element,src){
-    element.appendChild(newDiv)
+function addImgToanElement(src){
+    
     const img = document.createElement("img");
         
     img.setAttribute("src",src);
+    return img;
 }
