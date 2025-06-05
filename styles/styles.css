@@ -3,18 +3,41 @@
     text-align: center;
 }
 
-.card{
-    background-color: beige;
-    box-shadow: 1px 1px 1px 1px gray;    
-}
-
 .layout{
     display: grid;
     justify-content: center;
     grid-template-columns: auto auto auto;
-    justify-content: center;
+    gap: 40px;
+    text-align: center;
+}
+.card{
+    box-shadow: 1px 1px 1px 1px gray;   
+}
+.card:hover{
 }
 
 img{
-    width: 50%
+    width: 80%
+}
+
+.info{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    gap: 1px;
+}
+
+p{
+    margin: 0;
+}
+.star{
+    width:fit-content;
+}
+.star-gray{
+    width: fit-content;
+    fill: gray;
+    color: gray;
+    stroke:gray;
+    display: inline;
 }
