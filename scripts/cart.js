@@ -75,77 +75,25 @@ async function addCards() {
     });
 
     const starList = cardClone.querySelector(".star-ul");
-    const starTemplate = document.querySelector("#star-template");
+    const starTemplate = document.querySelector("#star-template").content;
+    const starTemplateGray = document.querySelector(
+      "#star-template-gray"
+    ).content;
+
     for (let i = 0; i < 5; i++) {
-      const star = starTemplate.cloneNode(true);
+      const star = document.createElement("li");
       star.style.display = "inline-block";
 
       if (element.stars <= i) {
-        star.className = "star-gray";
+        starList.appendChild(starTemplateGray.cloneNode(true));
       } else {
-        star.className = "star";
+        starList.appendChild(starTemplate.cloneNode(true));
       }
       starList.appendChild(star);
     }
 
     cardList.appendChild(cardClone);
   }
-
-  // const tempFlowers = await getflowers();
-  // const notifier = document.createElement("div");
-  // notifier.className = "in-cart-notifier";
-  // notifier.textContent = "In cart";
-
-  // for (let index = 0; index < tempFlowers.length; index++) {
-  //   const currentFlower = tempFlowers[index];
-
-  //   const newDiv = createCardElement();
-
-  //   const imgcontainer = document.createElement("div");
-  //   imgcontainer.className = "img-container";
-
-  //   const img = addImgToanElement(currentFlower.img);
-
-  //   const addButton = document.createElement("button");
-  //   addButton.textContent = "Add to cart";
-  //   addButton.className = "cart-button";
-
-  //   const removeButton = document.createElement("button");
-  //   removeButton.textContent = "Remove from cart";
-  //   removeButton.className = "cart-button";
-
-  //   imgcontainer.appendChild(img);
-
-  //   imgcontainer.appendChild(addButton);
-  //   const notifierClone = notifier.cloneNode(true);
-
-  //   imgcontainer.appendChild(notifierClone);
-  //   notifierClone.style.display = "none";
-
-  //   removeButton.addEventListener("click", () => {
-  //     removeItemFromCart(currentFlower);
-  //     notifierClone.style.display = "none";
-  //     addButton.style.display = "flex";
-  //     removeButton.style.display = "none";
-  //   });
-
-  //   addButton.addEventListener("click", () => {
-  //     addItemToCart(currentFlower);
-  //     imgcontainer.appendChild(removeButton);
-  //     notifierClone.style.display = "flex";
-  //     addButton.style.display = "none";
-  //     removeButton.style.display = "flex";
-  //   });
-
-  //   const newHr = document.createElement("hr");
-
-  //   const newInfo = createFlowerInfo(currentFlower);
-
-  //   newDiv.appendChild(imgcontainer);
-  //   newDiv.appendChild(newHr);
-  //   newDiv.appendChild(newInfo);
-  //   container.appendChild(newDiv);
-  // }
 }
 
 function createFlowerInfo(currentFlower) {
@@ -165,33 +113,4 @@ function createFlowerInfo(currentFlower) {
   newInfo.appendChild(stars);
   createStars(currentFlower, stars);
   return newInfo;
-}
-
-function createStars(flower, template) {
-  // const starList = template.querySelector("#star-template");
-  // const newStar = document.createElement("div");
-  // for (let i = 0; i < 5; i++) {
-  //   const star = document.createElement("li");
-  //   star.style.display = "inline-block";
-  //   if (flower.stars <= i) {
-  //     star.setAttribute("class", "star-gray");
-  //   } else {
-  //     star.setAttribute("class", "star");
-  //   }
-  //   newStar.appendChild(star);
-  // }
-  // return newStar;
-}
-
-function createCardElement() {
-  const newDiv = document.createElement("div");
-  newDiv.setAttribute("class", "card");
-  return newDiv;
-}
-
-function addImgToanElement(src) {
-  const img = document.createElement("img");
-
-  img.setAttribute("src", src);
-  return img;
 }
