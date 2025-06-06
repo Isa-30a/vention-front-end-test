@@ -66,33 +66,24 @@ async function addCards(container) {
     imgcontainer.appendChild(addButton);
     const notifierClone = notifier.cloneNode(true);
 
+    imgcontainer.appendChild(notifierClone);
+    notifierClone.style.display = "none";
+
     removeButton.addEventListener("click", () => {
       removeItemFromCart(currentFlower);
-      if (cart.has(currentFlower)) {
-        imgcontainer.appendChild(addButton);
-        imgcontainer.removeChild(notifierClone);
-      }
+      notifierClone.style.display = "none";
+      addButton.style.display = "flex";
+      removeButton.style.display = "none";
     });
 
     addButton.addEventListener("click", () => {
       addItemToCart(currentFlower);
-      if (cart.has(currentFlower)) {
-        imgcontainer.appendChild(removeButton);
-        imgcontainer.appendChild(notifierClone);
-      }
+      imgcontainer.appendChild(removeButton);
+      notifierClone.style.display = "flex";
+      addButton.style.display = "none";
+      removeButton.style.display = "flex";
     });
 
-    imgcontainer.addEventListener("mouseenter", () => {
-      if (!cart.has(currentFlower)) {
-        addButton.style.visibility = "visible";
-      } else {
-        removeButton.style.visibility = "visible";
-      }
-    });
-    imgcontainer.addEventListener("mouseleave", () => {
-      addButton.style.visibility = "hidden";
-      removeButton.style.visibility = "hidden";
-    });
     const newHr = document.createElement("hr");
 
     const newInfo = createFlowerInfo(currentFlower);
