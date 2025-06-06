@@ -4,38 +4,38 @@ const cardListImg = [
   "assets/pink-flower.png",
 ];
 async function getflowers() {
-     return[
-      {
-        img: cardListImg[0],
-        name: "Blue Flower",
-        price: "80.00",
-        stars: 4,
-      },
-      {
-        img: cardListImg[1],
-        name: "Orange Flower",
-        price: "17.60",
-        stars: 3,
-      },
-      {
-        img: cardListImg[2],
-        name: "Pink Flower",
-        price: "40.00",
-        stars: 5,
-      },
-    ];
+  return [
+    {
+      img: cardListImg[0],
+      name: "Blue Flower",
+      price: "80.00",
+      stars: 4,
+    },
+    {
+      img: cardListImg[1],
+      name: "Orange Flower",
+      price: "17.60",
+      stars: 3,
+    },
+    {
+      img: cardListImg[2],
+      name: "Pink Flower",
+      price: "40.00",
+      stars: 5,
+    },
+  ];
 }
 
 const layout = document.querySelector(".layout");
-const cart =[];
-addCards( layout);
+const cart = [];
+addCards(layout);
 
-function addItemToCart(item){
-
+function addItemToCart(item) {
+    cart.push(item);
 }
 
 async function addCards(container) {
-    const tempFlowers = await  getflowers();
+  const tempFlowers = await getflowers();
   const buttonText = "Add to cart";
 
   for (let index = 0; index < tempFlowers.length; index++) {
@@ -45,22 +45,26 @@ async function addCards(container) {
     const imgcontainer = document.createElement("div");
     imgcontainer.className = "img-container";
     const img = addImgToanElement(currentFlower.img);
+    
     const button = document.createElement("button");
     button.textContent = buttonText;
     button.className = "cart-button";
+    
+    button.addEventListener('click',()=>{
+        addItemToCart(currentFlower);
+    })
 
     imgcontainer.appendChild(img);
     imgcontainer.appendChild(button);
     const newHr = document.createElement("hr");
 
     const newInfo = createFlowerInfo(currentFlower);
-
-    container.appendChild(newDiv);
+    
 
     newDiv.appendChild(imgcontainer);
-
     newDiv.appendChild(newHr);
     newDiv.appendChild(newInfo);
+    container.appendChild(newDiv);
   }
 }
 
