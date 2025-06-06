@@ -18,8 +18,45 @@
       <h1 class="title">Interactive cards</h1>
     </section>
 
+   
     <section>
-      <div class="layout"></div>
+      <div class="layout">
+        <template id="card-template">
+          <div class="card">
+            <div class="img-container">
+              <img class="flower-img"/>
+              <button class="cart-button" onclick="addToCart($event)"></button>
+              <div class="cart-indicator">In Cart</div>
+            </div>
+            <hr />
+            <div class="info">
+              <p class="flower-name"></p>
+              <p class="price"></p>
+              <ul class="star-ul">
+                
+              </ul>
+            </div>
+          </div>
+        </template>
+        <template id="star-template">
+          <svg
+            width="10px"
+            height="10px"
+            viewBox="0 0 10 10"
+            version="1.1"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+          >
+            <polygon
+              class="star"
+              points="6.91773333 6.1328 10 3.75 6.25 3.75 5 0 3.75 3.75 0 3.75 3.086 6.12293333 1.87493333 10 5.00466667 7.6 8.1276 10"
+            ></polygon>
+          </svg>
+        </template>
+        <main>
+          <ul id="star-ul"></ul> 
+        </main>
+      </div>
     </section>
     <footer>
         By: Isabella Alvarado Solera
