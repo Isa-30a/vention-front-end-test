@@ -27,16 +27,18 @@ async function getflowers() {
 }
 
 const layout = document.querySelector(".layout");
-const cart = [];
+const cart = new Set();
 addCards(layout);
 
 function addItemToCart(item) {
-    cart.push(item);
+  cart.add(item);
+}
+function removeItemToCart(item) {
+  cart.add(item);
 }
 
 async function addCards(container) {
   const tempFlowers = await getflowers();
-  const buttonText = "Add to cart";
 
   for (let index = 0; index < tempFlowers.length; index++) {
     const currentFlower = tempFlowers[index];
@@ -45,21 +47,38 @@ async function addCards(container) {
     const imgcontainer = document.createElement("div");
     imgcontainer.className = "img-container";
     const img = addImgToanElement(currentFlower.img);
-    
-    const button = document.createElement("button");
-    button.textContent = buttonText;
-    button.className = "cart-button";
-    
-    button.addEventListener('click',()=>{
-        addItemToCart(currentFlower);
-    })
+
+    const addButton = document.createElement("button");
+    addButton.textContent = "Add to cart";
+    addButton.className = "cart-button";
+
+    const removeButton = document.createElement("button");
+    removeButton.textContent = "Remove from cart";
+    removeButton.className = "cart-button";
 
     imgcontainer.appendChild(img);
-    imgcontainer.appendChild(button);
+    imgcontainer.appendChild(addButton);
+    imgcontainer.appendChild(removeButton);
+
+    removeButton.addEventListener("click", () => {
+      removeItemToCart(currentFlower);
+      if (cart.has(currentFlower)) {
+        addButton.style = "visibility:visible;";
+        imgcontainer.replaceChild(removeButton, addButton);
+      }
+    });
+
+    addButton.addEventListener("click", () => {
+      addItemToCart(currentFlower);
+      if (cart.has(currentFlower)) {
+        addButton.style.visibility = "hidden";
+        imgcontainer.replaceChild(addButton, removeButton);
+      }
+    });
+
     const newHr = document.createElement("hr");
 
     const newInfo = createFlowerInfo(currentFlower);
-    
 
     newDiv.appendChild(imgcontainer);
     newDiv.appendChild(newHr);
@@ -74,8 +93,10 @@ function createFlowerInfo(currentFlower) {
 
   const name = document.createElement("p");
   name.textContent = currentFlower.name;
+  name.className = "name";
   const price = document.createElement("p");
   price.textContent = "$ " + currentFlower.price;
+  price.className = "price";
   const stars = document.createElement("div");
 
   newInfo.appendChild(name);
