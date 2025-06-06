@@ -69,22 +69,21 @@ async function addCards() {
 
     addButton.addEventListener("click", () => {
       addItemToCart(element);
-      imgcontainer.appendChild(removeButton);
       notifierClone.style.display = "flex";
       addButton.style.display = "none";
       removeButton.style.display = "flex";
     });
 
     const starList = cardClone.querySelector(".star-ul");
-
+    const starTemplate = document.querySelector("#star-template");
     for (let i = 0; i < 5; i++) {
-      const star = document.createElement("li");
+      const star = starTemplate.cloneNode(true);
       star.style.display = "inline-block";
 
       if (element.stars <= i) {
-        star.setAttribute("class", "star-gray");
+        star.className = "star-gray";
       } else {
-        star.setAttribute("class", "star");
+        star.className = "star";
       }
       starList.appendChild(star);
     }
@@ -170,13 +169,10 @@ function createFlowerInfo(currentFlower) {
 
 function createStars(flower, template) {
   // const starList = template.querySelector("#star-template");
-
   // const newStar = document.createElement("div");
-
   // for (let i = 0; i < 5; i++) {
   //   const star = document.createElement("li");
   //   star.style.display = "inline-block";
-
   //   if (flower.stars <= i) {
   //     star.setAttribute("class", "star-gray");
   //   } else {

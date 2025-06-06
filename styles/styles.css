@@ -58,6 +58,12 @@ body {
   color: white;
 }
 
+.add-btn{
+  display: flex;
+}
+.remove-btn{
+  display: none;
+}
 .cart-button {
   opacity: 0;
   transition: all 0.5s ease-out;
