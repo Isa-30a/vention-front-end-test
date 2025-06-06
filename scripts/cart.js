@@ -58,21 +58,23 @@ async function addCards(container) {
 
     imgcontainer.appendChild(img);
     imgcontainer.appendChild(addButton);
-    imgcontainer.appendChild(removeButton);
 
     removeButton.addEventListener("click", () => {
       removeItemToCart(currentFlower);
       if (cart.has(currentFlower)) {
+        imgcontainer.removeChild(removeButton);
+        imgcontainer.appendChild(addButton);
         addButton.style = "visibility:visible;";
-        imgcontainer.replaceChild(removeButton, addButton);
       }
     });
 
     addButton.addEventListener("click", () => {
       addItemToCart(currentFlower);
       if (cart.has(currentFlower)) {
+        imgcontainer.removeChild(addButton);
+
+        imgcontainer.appendChild(removeButton);
         addButton.style.visibility = "hidden";
-        imgcontainer.replaceChild(addButton, removeButton);
       }
     });
 
