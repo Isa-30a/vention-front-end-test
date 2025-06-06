@@ -52,23 +52,24 @@ async function addCards() {
     cardClone.querySelector(".flower-name").textContent = element.name;
     cardClone.querySelector(".price").textContent = "$" + element.price;
 
-    const notifierClone = cardClone.querySelector(".cart-indicator");
+    const notifierClone = cardClone.querySelector(".in-cart-notifier");
+    notifierClone.style.display = "none";
 
-    const addButton = cardClone.querySelector(".cart-button");
-    const removeButton = cardClone.querySelector(".cart-button");
+    const addButton = cardClone.querySelector(".add-btn");
+    const removeButton = cardClone.querySelector(".remove-btn");
 
     const imgcontainer = document.createElement("div");
     imgcontainer.className = "img-container";
 
     removeButton.addEventListener("click", () => {
-      removeItemFromCart(currentFlower);
+      removeItemFromCart(element);
       notifierClone.style.display = "none";
       addButton.style.display = "flex";
       removeButton.style.display = "none";
     });
 
     addButton.addEventListener("click", () => {
-      addItemToCart(currentFlower);
+      addItemToCart(element);
       imgcontainer.appendChild(removeButton);
       notifierClone.style.display = "flex";
       addButton.style.display = "none";
