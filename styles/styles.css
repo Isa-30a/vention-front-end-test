@@ -1,8 +1,13 @@
 .title {
+  font-family: "Dongle";
+  font-size: xx-large;
   color: black;
   text-align: center;
 }
-
+body {
+  font-family: "Dongle";
+  font-size: x-large;
+}
 .layout {
   display: grid;
   justify-content: center;
@@ -18,11 +23,15 @@
 .img-container {
   position: relative;
 }
-.img-container > img:hover {
+.img-container img {
+  transition: all 0.5s ease-out;
+}
+.img-container:hover img {
   opacity: 50%;
 }
 .card > .img-container:hover .cart-button {
   visibility: visible;
+  opacity: 1;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -50,7 +59,9 @@
 }
 
 .cart-button {
-    cursor: pointer;
+  opacity: 0;
+  transition: all 0.5s ease-out;
+  cursor: pointer;
   visibility: hidden;
   position: absolute;
   top: 50%;
@@ -93,13 +104,16 @@ p {
   font-family: "Dongle";
   font-size: x-large;
   margin: 0;
-  font-weight: 600;
+  color: black;
+  opacity: 80%;
 }
 .price {
   font-family: "Dongle";
   font-size: x-large;
   margin: 0;
   padding: 0;
+  color: black;
+  opacity: 70%;
 }
 .star {
   width: fit-content;
