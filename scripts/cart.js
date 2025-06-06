@@ -39,14 +39,13 @@ function removeItemFromCart(item) {
 
 async function addCards() {
   const tempFlowers = await getflowers();
-  const cardTemplate = document.getElementById("card-template").content;
+  const cardTemplate = document.querySelector("#card-template").content;
 
-  const cardList = document.getElementById("card-list");
+  const cardList = document.querySelector("#card-list");
 
   for (let index = 0; index < tempFlowers.length; index++) {
     const element = tempFlowers[index];
     const cardClone = cardTemplate.cloneNode(true);
-    const starList = cardClone.querySelector("star-ul");
 
     cardClone.querySelector(".flower-img").src = element.img;
     cardClone.querySelector(".flower-name").textContent = element.name;
@@ -75,7 +74,20 @@ async function addCards() {
       addButton.style.display = "none";
       removeButton.style.display = "flex";
     });
-    // createStars(element, starList);
+
+    const starList = cardClone.querySelector(".star-ul");
+
+    for (let i = 0; i < 5; i++) {
+      const star = document.createElement("li");
+      star.style.display = "inline-block";
+
+      if (element.stars <= i) {
+        star.setAttribute("class", "star-gray");
+      } else {
+        star.setAttribute("class", "star");
+      }
+      starList.appendChild(star);
+    }
 
     cardList.appendChild(cardClone);
   }
@@ -156,27 +168,23 @@ function createFlowerInfo(currentFlower) {
   return newInfo;
 }
 
-function createStars(flower, starsElement) {
-  const newStar = document.createElement("div");
-  newStar.setAttribute("style", "display:flex; justify-content:center");
-  const svg = `<svg width="10px" height="10px" viewBox="0 0 10 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <polygon id="star" points="6.91773333 6.1328 10 3.75 6.25 3.75 5 0 3.75 3.75 0 3.75 3.086 6.12293333 1.87493333 10 5.00466667 7.6 8.1276 10"></polygon>
-</svg>
-`;
-  for (let i = 0; i < 5; i++) {
-    const element = flower;
-    const star = document.createElement("div");
-    star.innerHTML = svg;
-    newStar.appendChild(star);
+function createStars(flower, template) {
+  // const starList = template.querySelector("#star-template");
 
-    if (flower.stars <= i) {
-      star.setAttribute("class", "star-gray");
-    } else {
-      star.setAttribute("class", "star");
-    }
-    newStar.setAttribute("src", "./assets/star.svg");
-    starsElement.appendChild(newStar);
-  }
+  // const newStar = document.createElement("div");
+
+  // for (let i = 0; i < 5; i++) {
+  //   const star = document.createElement("li");
+  //   star.style.display = "inline-block";
+
+  //   if (flower.stars <= i) {
+  //     star.setAttribute("class", "star-gray");
+  //   } else {
+  //     star.setAttribute("class", "star");
+  //   }
+  //   newStar.appendChild(star);
+  // }
+  // return newStar;
 }
 
 function createCardElement() {
