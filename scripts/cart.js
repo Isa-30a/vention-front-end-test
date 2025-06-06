@@ -47,19 +47,22 @@ async function addCards(container) {
     const currentFlower = tempFlowers[index];
 
     const newDiv = createCardElement();
+
     const imgcontainer = document.createElement("div");
     imgcontainer.className = "img-container";
+
     const img = addImgToanElement(currentFlower.img);
 
     const addButton = document.createElement("button");
     addButton.textContent = "Add to cart";
     addButton.className = "cart-button";
-    
+
     const removeButton = document.createElement("button");
     removeButton.textContent = "Remove from cart";
     removeButton.className = "cart-button";
-
+    
     imgcontainer.appendChild(img);
+
     imgcontainer.appendChild(addButton);
     const notifierClone = notifier.cloneNode(true);
     removeButton.addEventListener("click", () => {
