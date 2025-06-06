@@ -14,13 +14,14 @@
 .card {
   box-shadow: 1px 1px 1px 1px gray;
 }
-.card > .img-container:hover {
-  opacity: 50%;
+.img-container {
   position: relative;
 }
-
-.cart-button {
-  /* display: none; */
+.card > .img-container:hover {
+  opacity: 50%;
+}
+.card > .img-container:hover .cart-button {
+  visibility: visible;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -28,6 +29,19 @@
   background-color: mediumseagreen;
   border: none;
   border-radius: 4px;
+  z-index: 10;
+}
+
+.cart-button {
+  visibility: hidden;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: mediumseagreen;
+  border: none;
+  border-radius: 4px;
+  z-index: 10;
 }
 
 img {
