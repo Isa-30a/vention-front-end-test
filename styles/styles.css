@@ -50,6 +50,7 @@
 }
 
 .cart-button {
+    cursor: pointer;
   visibility: hidden;
   position: absolute;
   top: 50%;
