@@ -39,6 +39,9 @@ function removeItemToCart(item) {
 
 async function addCards(container) {
   const tempFlowers = await getflowers();
+  const notifier = document.createElement("div");
+  notifier.className = "in-cart-notifier";
+  notifier.textContent = "In cart";
 
   for (let index = 0; index < tempFlowers.length; index++) {
     const currentFlower = tempFlowers[index];
@@ -51,20 +54,21 @@ async function addCards(container) {
     const addButton = document.createElement("button");
     addButton.textContent = "Add to cart";
     addButton.className = "cart-button";
-
+    
     const removeButton = document.createElement("button");
     removeButton.textContent = "Remove from cart";
     removeButton.className = "cart-button";
 
     imgcontainer.appendChild(img);
     imgcontainer.appendChild(addButton);
-
+    const notifierClone = notifier.cloneNode(true);
     removeButton.addEventListener("click", () => {
       removeItemToCart(currentFlower);
       if (cart.has(currentFlower)) {
         imgcontainer.removeChild(removeButton);
         imgcontainer.appendChild(addButton);
-        addButton.style = "visibility:visible;";
+        addButton.style.visibility = "visible";
+        imgcontainer.removeChild(notifierClone);
       }
     });
 
@@ -72,9 +76,9 @@ async function addCards(container) {
       addItemToCart(currentFlower);
       if (cart.has(currentFlower)) {
         imgcontainer.removeChild(addButton);
-
         imgcontainer.appendChild(removeButton);
         addButton.style.visibility = "hidden";
+        imgcontainer.appendChild(notifierClone);
       }
     });
 
