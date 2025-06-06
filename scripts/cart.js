@@ -33,8 +33,8 @@ addCards(layout);
 function addItemToCart(item) {
   cart.add(item);
 }
-function removeItemToCart(item) {
-  cart.add(item);
+function removeItemFromCart(item) {
+  cart.delete(item);
 }
 
 async function addCards(container) {
@@ -60,17 +60,16 @@ async function addCards(container) {
     const removeButton = document.createElement("button");
     removeButton.textContent = "Remove from cart";
     removeButton.className = "cart-button";
-    
+
     imgcontainer.appendChild(img);
 
     imgcontainer.appendChild(addButton);
     const notifierClone = notifier.cloneNode(true);
+
     removeButton.addEventListener("click", () => {
-      removeItemToCart(currentFlower);
+      removeItemFromCart(currentFlower);
       if (cart.has(currentFlower)) {
-        imgcontainer.removeChild(removeButton);
         imgcontainer.appendChild(addButton);
-        addButton.style.visibility = "visible";
         imgcontainer.removeChild(notifierClone);
       }
     });
@@ -78,13 +77,22 @@ async function addCards(container) {
     addButton.addEventListener("click", () => {
       addItemToCart(currentFlower);
       if (cart.has(currentFlower)) {
-        imgcontainer.removeChild(addButton);
         imgcontainer.appendChild(removeButton);
-        addButton.style.visibility = "hidden";
         imgcontainer.appendChild(notifierClone);
       }
     });
 
+    imgcontainer.addEventListener("mouseenter", () => {
+      if (!cart.has(currentFlower)) {
+        addButton.style.visibility = "visible";
+      } else {
+        removeButton.style.visibility = "visible";
+      }
+    });
+    imgcontainer.addEventListener("mouseleave", () => {
+      addButton.style.visibility = "hidden";
+      removeButton.style.visibility = "hidden";
+    });
     const newHr = document.createElement("hr");
 
     const newInfo = createFlowerInfo(currentFlower);
