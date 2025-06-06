@@ -95,22 +95,3 @@ async function addCards() {
     cardList.appendChild(cardClone);
   }
 }
-
-function createFlowerInfo(currentFlower) {
-  const newInfo = document.createElement("div");
-  newInfo.setAttribute("class", "info");
-
-  const name = document.createElement("p");
-  name.textContent = currentFlower.name;
-  name.className = "name";
-  const price = document.createElement("p");
-  price.textContent = "$ " + currentFlower.price;
-  price.className = "price";
-  const stars = document.createElement("div");
-
-  newInfo.appendChild(name);
-  newInfo.appendChild(price);
-  newInfo.appendChild(stars);
-  createStars(currentFlower, stars);
-  return newInfo;
-}
