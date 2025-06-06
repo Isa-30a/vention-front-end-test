@@ -28,7 +28,7 @@ async function getflowers() {
 
 const layout = document.querySelector(".layout");
 const cart = new Set();
-addCards(layout);
+addCards();
 
 function addItemToCart(item) {
   cart.add(item);
@@ -37,37 +37,28 @@ function removeItemFromCart(item) {
   cart.delete(item);
 }
 
-async function addCards(container) {
+async function addCards() {
   const tempFlowers = await getflowers();
-  const notifier = document.createElement("div");
-  notifier.className = "in-cart-notifier";
-  notifier.textContent = "In cart";
+  const cardTemplate = document.getElementById("card-template").content;
+
+  const cardList = document.getElementById("card-list");
 
   for (let index = 0; index < tempFlowers.length; index++) {
-    const currentFlower = tempFlowers[index];
+    const element = tempFlowers[index];
+    const cardClone = cardTemplate.cloneNode(true);
+    const starList = cardClone.querySelector("star-ul");
 
-    const newDiv = createCardElement();
+    cardClone.querySelector(".flower-img").src = element.img;
+    cardClone.querySelector(".flower-name").textContent = element.name;
+    cardClone.querySelector(".price").textContent = "$" + element.price;
+
+    const notifierClone = cardClone.querySelector(".cart-indicator");
+
+    const addButton = cardClone.querySelector(".cart-button");
+    const removeButton = cardClone.querySelector(".cart-button");
 
     const imgcontainer = document.createElement("div");
     imgcontainer.className = "img-container";
-
-    const img = addImgToanElement(currentFlower.img);
-
-    const addButton = document.createElement("button");
-    addButton.textContent = "Add to cart";
-    addButton.className = "cart-button";
-
-    const removeButton = document.createElement("button");
-    removeButton.textContent = "Remove from cart";
-    removeButton.className = "cart-button";
-
-    imgcontainer.appendChild(img);
-
-    imgcontainer.appendChild(addButton);
-    const notifierClone = notifier.cloneNode(true);
-
-    imgcontainer.appendChild(notifierClone);
-    notifierClone.style.display = "none";
 
     removeButton.addEventListener("click", () => {
       removeItemFromCart(currentFlower);
@@ -83,16 +74,66 @@ async function addCards(container) {
       addButton.style.display = "none";
       removeButton.style.display = "flex";
     });
+    // createStars(element, starList);
 
-    const newHr = document.createElement("hr");
-
-    const newInfo = createFlowerInfo(currentFlower);
-
-    newDiv.appendChild(imgcontainer);
-    newDiv.appendChild(newHr);
-    newDiv.appendChild(newInfo);
-    container.appendChild(newDiv);
+    cardList.appendChild(cardClone);
   }
+
+  // const tempFlowers = await getflowers();
+  // const notifier = document.createElement("div");
+  // notifier.className = "in-cart-notifier";
+  // notifier.textContent = "In cart";
+
+  // for (let index = 0; index < tempFlowers.length; index++) {
+  //   const currentFlower = tempFlowers[index];
+
+  //   const newDiv = createCardElement();
+
+  //   const imgcontainer = document.createElement("div");
+  //   imgcontainer.className = "img-container";
+
+  //   const img = addImgToanElement(currentFlower.img);
+
+  //   const addButton = document.createElement("button");
+  //   addButton.textContent = "Add to cart";
+  //   addButton.className = "cart-button";
+
+  //   const removeButton = document.createElement("button");
+  //   removeButton.textContent = "Remove from cart";
+  //   removeButton.className = "cart-button";
+
+  //   imgcontainer.appendChild(img);
+
+  //   imgcontainer.appendChild(addButton);
+  //   const notifierClone = notifier.cloneNode(true);
+
+  //   imgcontainer.appendChild(notifierClone);
+  //   notifierClone.style.display = "none";
+
+  //   removeButton.addEventListener("click", () => {
+  //     removeItemFromCart(currentFlower);
+  //     notifierClone.style.display = "none";
+  //     addButton.style.display = "flex";
+  //     removeButton.style.display = "none";
+  //   });
+
+  //   addButton.addEventListener("click", () => {
+  //     addItemToCart(currentFlower);
+  //     imgcontainer.appendChild(removeButton);
+  //     notifierClone.style.display = "flex";
+  //     addButton.style.display = "none";
+  //     removeButton.style.display = "flex";
+  //   });
+
+  //   const newHr = document.createElement("hr");
+
+  //   const newInfo = createFlowerInfo(currentFlower);
+
+  //   newDiv.appendChild(imgcontainer);
+  //   newDiv.appendChild(newHr);
+  //   newDiv.appendChild(newInfo);
+  //   container.appendChild(newDiv);
+  // }
 }
 
 function createFlowerInfo(currentFlower) {
