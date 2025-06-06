@@ -3,35 +3,43 @@ const cardListImg = [
   "assets/orange-flower.png",
   "assets/pink-flower.png",
 ];
-const tempFlowers = [
-  {
-    img: cardListImg[0],
-    name: "Blue Flower",
-    price: "80.00",
-    stars: 4,
-  },
-  {
-    img: cardListImg[1],
-    name: "Orange Flower",
-    price: "17.60",
-    stars: 3,
-  },
-  {
-    img: cardListImg[2],
-    name: "Pink Flower",
-    price: "40.00",
-    stars: 5,
-  },
-];
+async function getflowers() {
+     return[
+      {
+        img: cardListImg[0],
+        name: "Blue Flower",
+        price: "80.00",
+        stars: 4,
+      },
+      {
+        img: cardListImg[1],
+        name: "Orange Flower",
+        price: "17.60",
+        stars: 3,
+      },
+      {
+        img: cardListImg[2],
+        name: "Pink Flower",
+        price: "40.00",
+        stars: 5,
+      },
+    ];
+}
+
 const layout = document.querySelector(".layout");
+const cart =[];
+addCards( layout);
 
-addCards(tempFlowers, layout);
+function addItemToCart(item){
 
-function addCards(flowersList, container) {
+}
+
+async function addCards(container) {
+    const tempFlowers = await  getflowers();
   const buttonText = "Add to cart";
 
-  for (let index = 0; index < flowersList.length; index++) {
-    const currentFlower = flowersList[index];
+  for (let index = 0; index < tempFlowers.length; index++) {
+    const currentFlower = tempFlowers[index];
 
     const newDiv = createCardElement();
     const imgcontainer = document.createElement("div");
